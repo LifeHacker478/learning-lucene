@@ -1,0 +1,75 @@
+# ========================================
+# Gradle Build Files
+# ========================================
+.gradle/
+build/
+*-index/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Local Gradle configuration
+gradle-app.setting
+gradle-app.properties
+gradle.properties
+gradlew.bat
+gradlew
+.settings/
+
+# ========================================
+# IntelliJ IDEA / Android Studio
+# ========================================
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# ========================================
+# Eclipse
+# ========================================
+.classpath
+.project
+.settings/
+bin/
+
+# ========================================
+# VS Code
+# ========================================
+.vscode/
+
+# ========================================
+# Logs and Temporary Files
+# ========================================
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+*.orig
+
+# ========================================
+# System Files
+# ========================================
+.DS_Store
+Thumbs.db
+
+# ========================================
+# Test and Coverage Reports
+# ========================================
+/test-results/
+/reports/
+/coverage/
+/jacoco.exec
+
+# ========================================
+# Build Artifacts
+# ========================================
+*.jar
+*.war
+*.ear
+
+# ========================================
+# Flyte / Python Virtual Envs (if applicable)
+# ========================================
+.venv/
+__pycache__/
+*.pyc
