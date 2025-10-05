@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain { languageVersion = JavaLanguageVersion.of(21) }
+}
+
+ext {
+    // Centralize Lucene version here
+    luceneVersion = '9.9.2'
+}
+
+dependencies {
+    implementation "org.apache.lucene:lucene-core:${luceneVersion}"
+    implementation "org.apache.lucene:lucene-analysis-common:${luceneVersion}"
+
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+application {
+    // Default runnable lesson (override with -PmainClass=... if needed)
+    mainClass = providers.gradleProperty("mainClass")
+        .orElse("learning.lucene.step01.CreateMinimalIndex")
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+/** Convenience runner for Step 01 */
+tasks.register('runStep01', JavaExec) {
+    group = 'application'
+    description = 'Run Step 01 - Creating a Minimal Index'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'learning.lucene.step01.CreateMinimalIndex'
+    if (project.hasProperty('args')) {
+        args(project.property('args').toString().split('\\s+'))
+    }
+}
+
+/** Cleanup helper for the sample index path used in Step 01 */
+tasks.register('cleanExampleIndex', Delete) {
+    delete layout.projectDirectory.dir('example-index')
+}
